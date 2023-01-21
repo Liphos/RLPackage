@@ -1,0 +1,14 @@
+main:
+  training: True
+  training_steps: 10000
+env:
+  env_name: "CartPole-v1"
+  num_agents: 8
+replay_buffer:
+  max_size: 2000
+policy:
+  algo: "RandomPolicy"
+  batch_size: 64
+logger:
+  logger: "wandb"
+  name: "debug"

@@ -1,0 +1,13 @@
+env:
+  env_name: "CartPole-v1"
+replay_buffer:
+  max_size: 2000
+policy:
+  algo: RandomPolicy
+Mode:
+  training: true
+  n_episodes: 1000
+Logger:
+  type: wandb
+
+
