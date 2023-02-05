@@ -1,5 +1,5 @@
 """Class for the logger"""
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import warnings
 warnings.simplefilter("ignore", category=DeprecationWarning)
 # pylint: disable=wrong-import-position
@@ -11,10 +11,10 @@ from rlpackage.config_base import AllConfigs, Config
 class LoggerWrapper():
     """General Wrapper for the loggers"""
     def __init__(self, name:str):
-        raise NotImplementedError()
+        pass
     def log_step(self, step:int, info:Dict[str, Any], testing:bool):
         """log step given the info"""
-        raise NotImplementedError()
+        pass
     def close_logger(self):
         """Execute commands when finishing"""
         pass
@@ -31,6 +31,7 @@ class WandbWrapper(LoggerWrapper):
         wandb.log(info_copy, step=step)
     def close_logger(self):
         wandb.finish(0)
+
 class TensorboardWrapper(LoggerWrapper):
     """Tensorboard wrapper"""
     def __init__(self, name:str):
@@ -50,6 +51,8 @@ def create_logger(config:Dict[str, Any]) -> LoggerWrapper:
         logger = WandbWrapper(logger_config["name"], config) # type: LoggerWrapper
     elif logger_config["logger"] == "tensorboard":
         logger = TensorboardWrapper(logger_config["name"])
+    elif logger_config["logger"] == "None":
+        logger = LoggerWrapper(logger_config["name"])
     else:
         raise ValueError("logger not recognized")
     return logger

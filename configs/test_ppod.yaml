@@ -7,9 +7,10 @@ env:
   env_name: "CartPole-v1"
   num_agents: 8
 replay_buffer:
-  max_size: 1000000
+  max_size: 200
 policy:
-  algo: "RandomPolicy"
+  algo: "PPODiscrete"
+  batch_size: 64
 logger:
   logger: "wandb"
-  name: "test_success"
+  name: "test_ppo_discrete"

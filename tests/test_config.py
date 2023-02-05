@@ -3,7 +3,7 @@ import pytest
 from rlpackage.configs import load_config
 
 @pytest.mark.parametrize("yaml_path, success",
-                         [("configs/test_fail.yaml", False), ("configs/test.yaml", True)])
+                         [("configs/test_fail.yaml", False), ("configs/test_cartpole.yaml", True)])
 def test_load_config(yaml_path:str, success:bool):
     """test load function"""
     if not success:

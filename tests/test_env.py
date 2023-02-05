@@ -8,7 +8,7 @@ from rlpackage.environment import create_env, EnvInfo
                                               ("LunarLanderContinuous-v2", 10)])
 def test_create_env(env_name:str, n_envs:int):
     """Test the creation of the environment"""
-    config = {"env_name": env_name, "n_envs": n_envs}
+    config = {"env_name": env_name, "num_agents": n_envs}
     env = create_env(config)
     assert isinstance(env, gym.Env) if n_envs == 1 else isinstance(env, gym.vector.VectorEnv)
     obs = env.reset()

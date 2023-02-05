@@ -14,4 +14,4 @@ def test_policy(env:gym.Env, config:Dict[str, Any]):
     policy = RandomPolicy(env_info, config=config)
     obs = env.reset()
     action = policy.act(obs, deterministic=False)
-    obs, _, _, _ = env.step(action)
+    obs, _, _, _ = env.step(action["action"])

@@ -1,5 +1,5 @@
 """Define env utils functions"""
-from typing import Set, Dict, Any
+from typing import Set, Dict, Any, Union, Tuple
 import gym
 from gym.spaces import Discrete, Box
 import numpy as np
@@ -55,7 +55,7 @@ class EnvInfo():
             self.num_agents = observation_space.shape[0]
 
         if isinstance(self.action_space, Discrete):
-            self.act_dim = ()
+            self.act_dim = () #type: Union[Tuple, Tuple[int]]
         elif isinstance(self.action_space, Box):
             self.act_dim = self.action_space.shape
         else:
